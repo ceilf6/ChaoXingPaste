@@ -75,9 +75,21 @@
                     applyCrack(frame.contentWindow, frame.contentDocument);
                 }
             } catch (e) {
-                // 跨域 iframe 可能会报错，忽略即可
+                // 跨域 iframe 可能会报错，catch覆写忽略即可
             }
         });
+
+        // const frames = targetDoc.querySelectorAll('iframe, frame');
+        // frames.forEach(frame => {
+        //     try {
+        //         // 只要能访问到 contentWindow 和 contentDocument，就向下递归
+        //         if (frame.contentWindow && frame.contentDocument) {
+        //             applyCrack(frame.contentWindow, frame.contentDocument);
+        //         }
+        //     } catch (e) {
+        //         // 遇到跨域 iframe (CORS限制) 会报错，直接忽略该分支
+        //     }
+        // });
         
         // 如果页面使用了 jQuery，解绑相关事件
         if (typeof $ !== "undefined") {
